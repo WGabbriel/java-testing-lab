@@ -33,7 +33,7 @@ public class AuthServiceTest {
     // Arrange
     UserClient userClient = createUserClient();
 
-    when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
+    //when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
 
     // Act
     authService.registerClient(userClient);
@@ -52,6 +52,45 @@ public class AuthServiceTest {
     // Assert
     assertThrows(IllegalArgumentException.class, () -> {
       authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarClienteComNomeDeUsuarioAusente() {
+
+    // Arrange
+    UserClient userClient3 = createUserClient();
+    userClient3.setUserName(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient3);
+    });
+  }
+
+    @Test
+  public void deveRegistrarClienteComSenhaDeUsuarioAusente() {
+
+    // Arrange
+    UserClient userClient4 = createUserClient();
+    userClient4.setPassword(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient4);
+    });
+  }
+
+  @Test
+  public void deveRegistrarClienteComPerfilDeUsuarioAusente() {
+
+    // Arrange
+    UserClient userClient4 = createUserClient();
+    userClient4.setUserProfile(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient4);
     });
   }
 
