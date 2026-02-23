@@ -43,7 +43,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarClienteComCodigoDeUsuarioAusente() {
+  public void deveRegistrarUsuarioComCodigoDeUsuarioAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -56,41 +56,132 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarClienteComNomeDeUsuarioAusente() {
+  public void deveRegistrarUsuarioComNomeDeUsuarioAusente() {
 
     // Arrange
-    UserClient userClient3 = createUserClient();
-    userClient3.setUserName(null);
+    UserClient userClient = createUserClient();
+    userClient.setUserName(null);
 
     // Assert
     assertThrows(IllegalArgumentException.class, () -> {
-      authService.registerClient(userClient3);
+      authService.registerClient(userClient);
     });
   }
 
     @Test
-  public void deveRegistrarClienteComSenhaDeUsuarioAusente() {
+  public void deveRegistrarUsuarioComSenhaDeUsuarioAusente() {
 
     // Arrange
-    UserClient userClient4 = createUserClient();
-    userClient4.setPassword(null);
+    UserClient userClient = createUserClient();
+    userClient.setPassword(null);
 
     // Assert
     assertThrows(IllegalArgumentException.class, () -> {
-      authService.registerClient(userClient4);
+      authService.registerClient(userClient);
     });
   }
 
   @Test
-  public void deveRegistrarClienteComPerfilDeUsuarioAusente() {
+  public void deveRegistrarUsuarioComEmailDeUsuarioAusente() {
 
     // Arrange
-    UserClient userClient4 = createUserClient();
-    userClient4.setUserProfile(null);
+    UserClient userClient = createUserClient();
+    userClient.setUserProfile(null);
 
     // Assert
     assertThrows(IllegalArgumentException.class, () -> {
-      authService.registerClient(userClient4);
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarUsuarioComEnderecoDeEmailAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setEmailAddress(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarUsuarioComDataDeCadastroAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setRegisterDate(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarClienteComCodigoDoClienteAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setClientCode(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarClienteComNomeDoClienteAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setClientName(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  public void deveRegistrarClienteComDataDeNascimentoAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setBirthDate(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  void deveRegistrarClienteComCPFAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setCpf(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  void deveRegistrarClienteComEmailAusente() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setEmail(null);
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.registerClient(userClient);
     });
   }
 

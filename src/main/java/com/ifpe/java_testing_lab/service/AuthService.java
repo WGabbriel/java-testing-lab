@@ -36,6 +36,27 @@ public class AuthService {
     requireNonBlank(client.getUserProfile() != null ? client.getUserProfile() : null,
         "O campo de perfil do usuário não foi preenchido");
 
+    requireNonBlank(client.getEmailAddress() != null ? client.getEmailAddress() : null,
+    "O campo de email do usuário não foi preenchido");
+
+    requireNonBlank(client.getRegisterDate() != null ? client.getRegisterDate() : null,
+    "O campo de data de cadastro não foi preenchido");
+
+    requireNonBlank(client.getClientCode() != null ? client.getClientCode().toString() : null,
+    "O campo de Código do cliente não foi preenchido");
+
+    requireNonBlank(client.getClientName() != null ? client.getClientName() : null,
+     "O campo de Nome do Cliente não foi preenchido");
+
+    requireNonBlank(client.getBirthDate() != null ? client.getBirthDate().toString() : null,
+     "O campo de Data de nacimento do Cliente não foi preenchido");
+
+    requireNonBlank(client.getCpf() != null ? client.getCpf() : null,
+     "O campo de CPF do Cliente não foi preenchido");
+
+    requireNonBlank(client.getEmail() != null ? client.getEmail() : null,
+     "O campo de Email do Cliente não foi preenchido");
+
     Optional<AbstractUser> existing = userRepository.findByEmail(client.getEmailAddress());
     if (existing.isPresent()) {
       throw new IllegalStateException("Já existe um usuário cadastrado com este e-mail");
