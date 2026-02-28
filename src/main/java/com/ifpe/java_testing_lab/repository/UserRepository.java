@@ -13,4 +13,6 @@ public interface UserRepository {
 
   Optional<AbstractUser> findByEmail(String email);
 
+  Optional<AbstractUser> findByCpf(String cpf);
+
 }
