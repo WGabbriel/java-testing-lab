@@ -43,6 +43,20 @@ public class ClientServiceTest {
     assertEquals(cpf, resultado.getCpf());
   }
 
+  @Test
+  public void deveAtualizarPerfilComTodosOsCamposPreenchidos() {
+
+    // Arrange
+    UserClient userClient = createUserClient();
+    userClient.setEmail("joaozin@email.com");
+
+    // Act
+    UserClient resultado = clientService.updateProfile(userClient);
+
+    // Assert
+    assertEquals("joaozin@email.com", resultado.getEmail());
+  }
+
   private UserClient createUserClient() {
     UserClient userClient = new UserClient();
     userClient.setUserCode(1L);

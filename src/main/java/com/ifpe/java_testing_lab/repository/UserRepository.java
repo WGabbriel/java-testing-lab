@@ -11,6 +11,8 @@ public interface UserRepository {
 
   void saveUser(AbstractUser user);
 
+  void updateUser(AbstractUser user);
+
   Optional<AbstractUser> findByEmail(String email);
 
   Optional<AbstractUser> findByCpf(String cpf);

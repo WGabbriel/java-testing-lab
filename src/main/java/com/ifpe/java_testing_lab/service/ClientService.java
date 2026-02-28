@@ -20,4 +20,9 @@ public class ClientService {
     return (UserClient) result.get();
   }
 
+  public UserClient updateProfile(UserClient client) {
+    userRepository.updateUser(client);
+    return client;
+  }
+
 }
