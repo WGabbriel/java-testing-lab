@@ -1,5 +1,6 @@
 package com.ifpe.java_testing_lab.auth;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.ifpe.java_testing_lab.entity.AbstractUser;
 import com.ifpe.java_testing_lab.entity.UserClient;
 import com.ifpe.java_testing_lab.repository.UserRepository;
 import com.ifpe.java_testing_lab.service.AuthService;
@@ -33,7 +35,7 @@ public class AuthServiceTest {
     // Arrange
     UserClient userClient = createUserClient();
 
-    //when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
+    // when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
 
     // Act
     authService.registerClient(userClient);
@@ -68,7 +70,7 @@ public class AuthServiceTest {
     });
   }
 
-    @Test
+  @Test
   public void deveRegistrarUsuarioComSenhaDeUsuarioAusente() {
 
     // Arrange
@@ -182,6 +184,52 @@ public class AuthServiceTest {
     // Assert
     assertThrows(IllegalArgumentException.class, () -> {
       authService.registerClient(userClient);
+    });
+  }
+
+  @Test
+  void deveRealizarLoginDoUserClientComSucesso() {
+
+    // Arrange
+    AbstractUser userClient = createUserClient();
+    String userName = userClient.getUserName();
+    String password = userClient.getPassword();
+
+    when(userRepository.findByUserName(userName)).thenReturn(Optional.of(userClient));
+
+    // Act
+    AbstractUser resultado = authService.login(userName, password);
+
+    // Assert
+    verify(userRepository).findByUserName(userName);
+    assertSame(userClient, resultado);
+  }
+
+  @Test
+  void deveRealizarLoginDoUserClientSemUsername() {
+
+    // Arrange
+    AbstractUser userClient = createUserClient();
+    String userName = null;
+    String password = userClient.getPassword();
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.login(userName, password);
+    });
+  }
+
+  @Test
+  void deveRealizarLoginDoUserClientSemSenha() {
+
+    // Arrange
+    AbstractUser userClient = createUserClient();
+    String userName = userClient.getUserName();
+    String password = null;
+
+    // Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      authService.login(userName, password);
     });
   }
 

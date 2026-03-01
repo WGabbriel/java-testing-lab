@@ -37,25 +37,25 @@ public class AuthService {
         "O campo de perfil do usuário não foi preenchido");
 
     requireNonBlank(client.getEmailAddress() != null ? client.getEmailAddress() : null,
-    "O campo de email do usuário não foi preenchido");
+        "O campo de email do usuário não foi preenchido");
 
     requireNonBlank(client.getRegisterDate() != null ? client.getRegisterDate() : null,
-    "O campo de data de cadastro não foi preenchido");
+        "O campo de data de cadastro não foi preenchido");
 
     requireNonBlank(client.getClientCode() != null ? client.getClientCode().toString() : null,
-    "O campo de Código do cliente não foi preenchido");
+        "O campo de Código do cliente não foi preenchido");
 
     requireNonBlank(client.getClientName() != null ? client.getClientName() : null,
-     "O campo de Nome do Cliente não foi preenchido");
+        "O campo de Nome do Cliente não foi preenchido");
 
     requireNonBlank(client.getBirthDate() != null ? client.getBirthDate().toString() : null,
-     "O campo de Data de nacimento do Cliente não foi preenchido");
+        "O campo de Data de nacimento do Cliente não foi preenchido");
 
     requireNonBlank(client.getCpf() != null ? client.getCpf() : null,
-     "O campo de CPF do Cliente não foi preenchido");
+        "O campo de CPF do Cliente não foi preenchido");
 
     requireNonBlank(client.getEmail() != null ? client.getEmail() : null,
-     "O campo de Email do Cliente não foi preenchido");
+        "O campo de Email do Cliente não foi preenchido");
 
     Optional<AbstractUser> existing = userRepository.findByEmail(client.getEmailAddress());
     if (existing.isPresent()) {
@@ -64,6 +64,23 @@ public class AuthService {
 
     userRepository.saveUser(client);
     return client;
+  }
+
+  public AbstractUser login(String userName, String password) {
+
+    if (userName == null || userName.isBlank()) {
+      throw new IllegalArgumentException("O campo de nome do usuário não foi preenchido");
+    }
+    if (password == null || password.isBlank()) {
+      throw new IllegalArgumentException("O campo de senha do usuário não foi preenchido");
+    }
+    Optional<AbstractUser> result = userRepository.findByUserName(userName);
+
+    if (result.isPresent() && result.get().getPassword().equals(password)) {
+      return result.get();
+    } else {
+      throw new IllegalArgumentException("Nome de usuário ou senha inválidos");
+    }
   }
 
 }

@@ -17,4 +17,6 @@ public interface UserRepository {
 
   Optional<AbstractUser> findByCpf(String cpf);
 
+  Optional<AbstractUser> findByUserName(String userName);
+
 }
