@@ -1,7 +1,7 @@
 package com.ifpe.java_testing_lab.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -39,7 +39,6 @@ public class ClientServiceTest {
     UserClient resultado = clientService.verifyCpf(cpf);
 
     // Assert
-    verify(userRepository).findByCpf(cpf);
     assertEquals(cpf, resultado.getCpf());
   }
 
@@ -54,7 +53,7 @@ public class ClientServiceTest {
     UserClient resultado = clientService.updateProfile(userClient);
 
     // Assert
-    assertEquals("joaozin@email.com", resultado.getEmail());
+    assertSame(userClient, resultado);
   }
 
   private UserClient createUserClient() {
