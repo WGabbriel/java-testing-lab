@@ -138,6 +138,7 @@ public class AuthService {
     requireNonBlank(user.getRegisterDate() != null ? user.getRegisterDate() : null,
         "Código do usuário comum não informado");
 
+    userRepository.saveUser(user);
     return user;
   }
 
