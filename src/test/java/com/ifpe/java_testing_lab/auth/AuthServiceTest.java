@@ -32,12 +32,12 @@ public class AuthServiceTest {
   AuthService authService;
 
   @Test
-  public void deveRegistrarUserClientComSucesso() {
+  public void naoDeveRegistrarUserClientComSucesso() {
 
     // Arrange
     UserClient userClient = createUserClient();
 
-    // when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
+    when(userRepository.findByEmail(userClient.getEmail())).thenReturn(Optional.empty());
 
     // Act
     authService.registerClient(userClient);
@@ -47,7 +47,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComCodigoDeUsuarioAusente() {
+  public void naoDeveRegistrarUsuarioComCodigoDeUsuarioAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -60,7 +60,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComNomeDeUsuarioAusente() {
+  public void naoDeveRegistrarUsuarioComNomeDeUsuarioAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -73,7 +73,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComSenhaDeUsuarioAusente() {
+  public void naoDeveRegistrarUsuarioComSenhaDeUsuarioAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -86,7 +86,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComEmailDeUsuarioAusente() {
+  public void naoDeveRegistrarUsuarioComEmailDeUsuarioAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -99,7 +99,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComEnderecoDeEmailAusente() {
+  public void naoDeveRegistrarUsuarioComEnderecoDeEmailAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -112,7 +112,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarUsuarioComDataDeCadastroAusente() {
+  public void naoDeveRegistrarUsuarioComDataDeCadastroAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -125,7 +125,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarClienteComCodigoDoClienteAusente() {
+  public void naoDeveRegistrarClienteComCodigoDoClienteAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -138,7 +138,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarClienteComNomeDoClienteAusente() {
+  public void naoDeveRegistrarClienteComNomeDoClienteAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -151,7 +151,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  public void deveRegistrarClienteComDataDeNascimentoAusente() {
+  public void naoDeveRegistrarClienteComDataDeNascimentoAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -164,7 +164,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  void deveRegistrarClienteComCPFAusente() {
+  void naoDeveRegistrarClienteComCPFAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -177,7 +177,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  void deveRegistrarClienteComEmailAusente() {
+  void naoDeveRegistrarClienteComEmailAusente() {
 
     // Arrange
     UserClient userClient = createUserClient();
@@ -190,7 +190,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  void deveRealizarLoginDoUserClientComSucesso() {
+  void naoDeveRealizarLoginDoUserClientComSucesso() {
 
     // Arrange
     AbstractUser userClient = createUserClient();
@@ -208,7 +208,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  void deveRealizarLoginDoUserClientSemUsername() {
+  void naoDeveRealizarLoginDoUserClientSemUsername() {
 
     // Arrange
     AbstractUser userClient = createUserClient();
@@ -222,7 +222,7 @@ public class AuthServiceTest {
   }
 
   @Test
-  void deveRealizarLoginDoUserClientSemSenha() {
+  void naoDeveRealizarLoginDoUserClientSemSenha() {
 
     // Arrange
     AbstractUser userClient = createUserClient();
@@ -326,7 +326,7 @@ public class AuthServiceTest {
   // EMPLOYEES (TC010 ATÉ TC019)
 
   @Test
-  void deveRegistrarFuncionarioComSucesso() {
+  void naoDeveRegistrarFuncionarioComSucesso() {
 
     // Arrange
     UserEmployee userEmployee = creatUserEmployee();
